@@ -15,7 +15,7 @@ const SignUpPage = () => {
 
     const onSignUp = async () => {
         try {
-            const reponse = await axios.post("/api/uses/signup", user);
+            const reponse = await axios.post("/api/users/signup", user);
             router.push("/login");
         } catch (error: any) {
             console.log("Signup failed", error.message);
@@ -49,7 +49,7 @@ const SignUpPage = () => {
                 placeholder="password"
             />
             <button onClick={onSignUp}>Sign up</button>
-            <Link href="/login">ALready have an account? Log in!</Link>
+            <Link href="/login">Already have an account? Log in!</Link>
         </div>
     )
 }

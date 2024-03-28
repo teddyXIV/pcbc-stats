@@ -26,7 +26,7 @@ const LoginPage = () => {
     }
 
     return (
-        <div className="flax flex-col items-center justify-center min-h-screen py-2">
+        <div className="flex flex-col items-center justify-center min-h-screen py-2">
             <h1>{loading ? "Processing" : "Login"}</h1>
             <hr />
 

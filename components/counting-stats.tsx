@@ -14,7 +14,6 @@ const CountingStats = () => {
     ];
 
     return (
-        // <div className="max-w-md mx-auto">
         <table className="w-fit mx-auto bg-white border border-gray-200 divide-y divide-gray-200">
             <tbody className="divide-y divide-gray-200">
                 {/* First row for stat names */}
@@ -31,7 +30,6 @@ const CountingStats = () => {
                 </tr>
             </tbody>
         </table>
-        // </div>
     );
 };
 

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from 'axios';
 
@@ -23,7 +23,7 @@ const SignUpPage = () => {
     }
 
     return (
-        <div>
+        <div className="flex flex-col">
             <label htmlFor="username">username</label>
             <input
                 id="username"

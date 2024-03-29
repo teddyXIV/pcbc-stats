@@ -24,6 +24,7 @@ export const config = {
         '/login',
         '/signup',
         '/your-stats',
-        '/verifyemail'
+        '/verifyemail',
+        '/new-game'
     ]
 }

@@ -1,11 +1,12 @@
 import Image from "next/image"
 import Link from "next/link"
 import logo from "../assets/pcbc-logo.png"
+import Logout from "./logout"
 
 const Header = () => {
     return (
-        <div className="grid grid-rows-1 h-28 bg-gradient-to-r from-cyan-500 to-blue-500">
-            <div className="w-28 h-28">
+        <div className="flex flex-row h-28 bg-gradient-to-r from-slate-600 to-slate-800">
+            <div className="w-1/4 h-28">
                 <Link href="/">
                     <Image
                         src={logo}
@@ -15,8 +16,11 @@ const Header = () => {
                     />
                 </Link>
             </div>
-            <div className="flex justify-center">
-                <h1 className="text-6xl my-6">PCBC Stats</h1>
+            <div className="flex justify-center w-1/2">
+                <h1 className="text-white text-6xl my-6">PCBC Stats</h1>
+            </div>
+            <div className="w-1/4 flex justify-center">
+                <Logout />
             </div>
         </div>
     )

@@ -1,7 +1,11 @@
+"use client"
+
 import axios from "axios"
-import router from "next/router";
+import { useRouter } from "next/navigation";
 
 const Logout = () => {
+    const router = useRouter();
+
     const logout = async () => {
         try {
             await axios.get('api/users/logout');
@@ -12,7 +16,9 @@ const Logout = () => {
     }
 
     return (
-        <button onClick={logout}>Logout</button>
+        <div>
+            <button onClick={logout} className="border-2 rounded py-1 px-2 bg-lime-500">Logout</button>
+        </div>
     )
 }
 

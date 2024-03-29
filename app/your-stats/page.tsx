@@ -7,7 +7,7 @@ const YourStats = () => {
     const [stats, setStats] = useState("No stats")
 
     const getUserDetails = async () => {
-        const res = await axios.get('/api/users/stats')
+        const res = await axios.get('/api/users/your-stats')
         setStats(res.data.data._id)
     }
 

@@ -17,7 +17,7 @@ const LoginPage = () => {
         try {
             setLoading(true);
             const response = await axios.post("/api/users/login", user);
-            router.push('/');
+            router.push('/your-stats');
         } catch (error: any) {
             console.log("Login failed", error.message);
         } finally {

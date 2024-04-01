@@ -1,6 +1,6 @@
 export interface Game {
     _id: string,
-    date: string
+    date: string,
     plate_appearances: number,
     singles: number,
     doubles: number,
@@ -14,7 +14,7 @@ export interface Game {
 
 export interface Totals {
     plate_appearances: number,
-    hits: number
+    hits: number,
     at_bats: number,
     singles: number,
     doubles: number,

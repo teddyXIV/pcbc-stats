@@ -22,14 +22,14 @@ const NewGame = () => {
     const onSubmit = async () => {
         try {
             const reponse = await axios.post("api/user-stats/upload-game", game);
-            router.push('/');
+            router.push('/your-stats');
         } catch (error: any) {
             console.log("Game submission failed", error.message);
         }
     }
 
     return (
-        <div>
+        <div className="flex flex-col w-32 m-auto">
             <label htmlFor="date">Date</label>
             <input
                 id="date"

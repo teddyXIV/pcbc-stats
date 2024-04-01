@@ -7,6 +7,7 @@ import type { Game, Totals } from "@/types/game";
 
 import TotalsTable from "@/components/totals-table";
 import OneGameTable from "@/components/one-game-table";
+import Link from "next/link";
 
 const YourStats = () => {
     const [loading, setLoading] = useState(true)
@@ -18,6 +19,7 @@ const YourStats = () => {
                 const res = await axios.get('/api/users/your-stats');
                 setLoading(false);
                 setStats(res.data.data);
+
             } catch (error) {
                 console.error("Error fetching user stats:", error);
             }
@@ -63,8 +65,9 @@ const YourStats = () => {
     })
 
     return (
-        <div>
-            <h1>Date: {stats[0].date}</h1>
+        <main>
+            <Link href="/new-game">Submit a new game</Link>
+            <Link href="/your-stats">Your stats</Link>
             <h1>Your Stats</h1>
             {loading ? <h2>Loading stats...</h2> : null}
             {stats.length > 0 ?
@@ -117,7 +120,7 @@ const YourStats = () => {
                 </div>
                 : <h2>No stats available</h2>}
 
-        </div>
+        </main>
     );
 }
 

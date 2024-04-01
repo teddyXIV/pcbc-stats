@@ -8,6 +8,7 @@ export default function Home() {
       <TripleSlash />
       <CountingStats />
       <Link href="/new-game">Submit a new game</Link>
+      <Link href="/your-stats">Your stats</Link>
     </main>
   );
 }

@@ -2,6 +2,7 @@ import { connect } from "@/dbConfig/dbConfig";
 import { getDataFromToken } from "@/helpers/getDataFromToken";
 import Game from "@/models/gameModel";
 import { NextRequest, NextResponse } from "next/server";
+import mongoose from "mongoose";
 
 connect()
 
@@ -11,6 +12,7 @@ export const POST = async (request: NextRequest) => {
         const { date, singles, doubles, triples, homeruns, walks, strikeouts, hbp } = reqBody
         const userId = await getDataFromToken(request)
         console.log(userId)
+
 
         const newGame = new Game({
             user: userId,

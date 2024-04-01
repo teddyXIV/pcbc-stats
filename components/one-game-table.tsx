@@ -1,11 +1,12 @@
-import type { Totals } from "@/types/game";
+import type { OneGame } from "@/types/game";
 
-const StatsTable = ({ game }: { game: Totals }) => {
+const OneGameTable = ({ game }: { game: OneGame }) => {
 
 
     return (
 
-        <tr>
+        <tr key={game._id}>
+            <td className="px-4 py-2 whitespace-nowrap">{game.date}</td>
             <td className="px-4 py-2 whitespace-nowrap">{game.plate_appearances}</td>
             <td className="px-4 py-2 whitespace-nowrap">{game.singles}</td>
             <td className="px-4 py-2 whitespace-nowrap">{game.doubles}</td>
@@ -20,6 +21,4 @@ const StatsTable = ({ game }: { game: Totals }) => {
     );
 };
 
-export default StatsTable;
-
-
+export default OneGameTable;

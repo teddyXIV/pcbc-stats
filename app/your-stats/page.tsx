@@ -4,7 +4,9 @@ import TripleSlash from "@/components/triple-slash";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import type { Game, Totals } from "@/types/game";
-import StatsTable from "@/components/stats-table";
+
+import TotalsTable from "@/components/totals-table";
+import OneGameTable from "@/components/one-game-table";
 
 const YourStats = () => {
     const [loading, setLoading] = useState(true)
@@ -34,14 +36,16 @@ const YourStats = () => {
     const totalHBPs = stats.reduce((total, game) => total + game.hbp, 0);
     const totalSacrifices = stats.reduce((total, game) => total + game.sacrifice, 0);
 
-    const atBats = totalPAs - (totalBBs + totalHBPs + totalSacrifices)
+    const totalAtBats = totalPAs - (totalBBs + totalHBPs + totalSacrifices)
     const totalHits = totalSingles + totalDoubles + totalTriples + totalHomers
     const average = totalHits / (totalPAs)
     const onBase = (totalHits + totalBBs + totalHBPs) / totalPAs
-    const slugging = (totalSingles + (2 * totalDoubles) + (3 * totalTriples) + (4 * totalHomers)) / atBats
+    const slugging = (totalSingles + (2 * totalDoubles) + (3 * totalTriples) + (4 * totalHomers)) / totalAtBats
 
     const Totals: Totals = {
         plate_appearances: totalPAs,
+        hits: totalHits,
+        at_bats: totalAtBats,
         singles: totalSingles,
         doubles: totalDoubles,
         triples: totalTriples,
@@ -52,8 +56,15 @@ const YourStats = () => {
         sacrifice: totalSacrifices
     }
 
+    const individualGames = stats.map((game) => {
+        return (
+            <OneGameTable game={game} />
+        )
+    })
+
     return (
         <div>
+            <h1>Date: {stats[0].date}</h1>
             <h1>Your Stats</h1>
             {loading ? <h2>Loading stats...</h2> : null}
             {stats.length > 0 ?
@@ -62,22 +73,47 @@ const YourStats = () => {
                         average={parseFloat(average.toFixed(3))}
                         onBase={parseFloat(onBase.toFixed(3))}
                         slugging={parseFloat(slugging.toFixed(3))} />
-                    <table className="w-fit mx-auto bg-white border border-gray-200 divide-y divide-gray-200">
-                        <tbody className="divide-y divide-gray-200">
-                            <tr>
-                                <td className="px-4 py-2 whitespace-nowrap">PA</td>
-                                <td className="px-4 py-2 whitespace-nowrap">1B</td>
-                                <td className="px-4 py-2 whitespace-nowrap">2B</td>
-                                <td className="px-4 py-2 whitespace-nowrap">3B</td>
-                                <td className="px-4 py-2 whitespace-nowrap">HR</td>
-                                <td className="px-4 py-2 whitespace-nowrap">BB</td>
-                                <td className="px-4 py-2 whitespace-nowrap">SO</td>
-                                <td className="px-4 py-2 whitespace-nowrap">HBP</td>
-                                <td className="px-4 py-2 whitespace-nowrap">Sac</td>
-                            </tr>
-                            <StatsTable game={Totals} />
-                        </tbody>
-                    </table>
+                    <div>
+                        <h2>Totals</h2>
+                        <table className="w-fit mx-auto bg-white border border-gray-200 divide-y divide-gray-200">
+                            <tbody className="divide-y divide-gray-200">
+                                <tr>
+                                    <td className="px-4 py-2 whitespace-nowrap">PA</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">AB</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">H</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">1B</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">2B</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">3B</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">HR</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">BB</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">SO</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">HBP</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">Sac</td>
+                                </tr>
+                                <TotalsTable game={Totals} />
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <h2>Games</h2>
+                        <table className="w-fit mx-auto bg-white border border-gray-200 divide-y divide-gray-200">
+                            <tbody className="divide-y divide-gray-200">
+                                <tr>
+                                    <td className="px-4 py-2 whitespace-nowrap">Date</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">PA</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">1B</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">2B</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">3B</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">HR</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">BB</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">SO</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">HBP</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">Sac</td>
+                                </tr>
+                                {individualGames}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 : <h2>No stats available</h2>}
 

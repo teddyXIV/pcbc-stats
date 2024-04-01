@@ -8,14 +8,15 @@ const NewGame = () => {
     const router = useRouter();
     const [game, setGame] = useState({
         date: "",
-        pa: 0,
+        plate_appearances: 0,
         singles: 0,
         doubles: 0,
         triples: 0,
         homeruns: 0,
         walks: 0,
         strikeouts: 0,
-        hbp: 0
+        hbp: 0,
+        sacrifice: 0
     })
 
     const onSubmit = async () => {
@@ -36,13 +37,13 @@ const NewGame = () => {
                 value={game.date}
                 onChange={(e) => setGame({ ...game, date: e.target.value })}
             />
-            <label htmlFor="pas">Plate Appearances</label>
+            <label htmlFor="plate_appearances">Plate Appearances</label>
             <input
-                id="pas"
+                id="plate_appearances"
                 type="number"
                 step="1"
-                value={game.pa}
-                onChange={(e) => setGame({ ...game, pa: parseInt(e.target.value, 10) })}
+                value={game.plate_appearances}
+                onChange={(e) => setGame({ ...game, plate_appearances: parseInt(e.target.value, 10) })}
             />
             <label htmlFor="singles">Singles</label>
             <input
@@ -99,6 +100,14 @@ const NewGame = () => {
                 step="1"
                 value={game.hbp}
                 onChange={(e) => setGame({ ...game, hbp: parseInt(e.target.value, 10) })}
+            />
+            <label htmlFor="sacrifice">Sacrifice</label>
+            <input
+                id="scrifice"
+                type="number"
+                step="1"
+                value={game.sacrifice}
+                onChange={(e) => setGame({ ...game, sacrifice: parseInt(e.target.value, 10) })}
             />
             <button onClick={onSubmit}>Submit</button>
         </div>

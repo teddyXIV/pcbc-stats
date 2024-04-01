@@ -8,7 +8,7 @@ connect()
 export const POST = async (request: NextRequest) => {
     try {
         const reqBody = await request.json()
-        const { date, singles, doubles, triples, homeruns, walks, strikeouts, hbp } = reqBody
+        const { date, plate_appearances, singles, doubles, triples, homeruns, walks, strikeouts, hbp, sacrifice } = reqBody
         const userId = await getDataFromToken(request)
         console.log(userId)
 
@@ -16,13 +16,15 @@ export const POST = async (request: NextRequest) => {
         const newGame = new Game({
             user: userId,
             date,
+            plate_appearances,
             singles,
             doubles,
             triples,
             homeruns,
             walks,
             strikeouts,
-            hbp
+            hbp,
+            sacrifice
         })
 
         const savedGame = await newGame.save()

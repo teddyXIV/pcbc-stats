@@ -70,7 +70,7 @@ const gameSchema = new mongoose.Schema({
             message: "Walks must be an integer"
         }
     },
-    strikouts: {
+    strikeouts: {
         type: Number,
         default: 0,
         validate: {
@@ -88,6 +88,16 @@ const gameSchema = new mongoose.Schema({
                 return Number.isInteger(value);
             },
             message: "Hit by pitch must be an integer"
+        }
+    },
+    sacrifice: {
+        type: Number,
+        default: 0,
+        validate: {
+            validator: function (value) {
+                return Number.isInteger(value);
+            },
+            message: "Sacrifice outs must be an integer"
         }
     }
 })

@@ -11,6 +11,7 @@ export const GET = async (request: NextRequest) => {
         const userId = await getDataFromToken(request)
 
         const games = await Game.find({ user: userId })
+            .select("_id plate_appearances singles doubles triples homeruns walks strikeouts hbp")
         return NextResponse.json({
             message: "Games found",
             data: games

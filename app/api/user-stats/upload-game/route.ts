@@ -2,7 +2,6 @@ import { connect } from "@/dbConfig/dbConfig";
 import { getDataFromToken } from "@/helpers/getDataFromToken";
 import Game from "@/models/gameModel";
 import { NextRequest, NextResponse } from "next/server";
-import mongoose from "mongoose";
 
 connect()
 

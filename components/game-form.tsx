@@ -5,11 +5,8 @@ import { useRouter } from "next/navigation"
 import { useState } from "react";
 import type { GameForm } from "@/types/game";
 
-interface GameFormProps {
-    handleClick: (arg1: GameForm) => Promise<void>
-}
 
-const GameForm = (props: GameFormProps) => {
+const GameForm = () => {
     const router = useRouter();
     const [game, setGame] = useState<GameForm>({
         date: "",
@@ -24,14 +21,14 @@ const GameForm = (props: GameFormProps) => {
         sacrifice: 0
     })
 
-    // const onSubmit = async () => {
-    //     try {
-    //         const reponse = await axios.post("api/user-stats/upload-game", game);
-    //         router.push('/your-stats');
-    //     } catch (error: any) {
-    //         console.log("Game submission failed", error.message);
-    //     }
-    // }
+    const handleSubmit = async () => {
+        try {
+            const reponse = await axios.post("api/user-stats/upload-game", game);
+            router.push('/your-stats');
+        } catch (error: any) {
+            console.log("Game submission failed", error.message);
+        }
+    }
 
     return (
         <div className="flex flex-col w-32 m-auto">
@@ -114,7 +111,7 @@ const GameForm = (props: GameFormProps) => {
                 value={game.sacrifice}
                 onChange={(e) => setGame({ ...game, sacrifice: parseInt(e.target.value, 10) })}
             />
-            <button onClick={props.handleClick(game)}>Submit</button>
+            <button onClick={handleSubmit}>Submit</button>
         </div>
     )
 }

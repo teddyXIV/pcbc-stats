@@ -4,7 +4,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation"
 import { useState } from "react";
 
-const NewGame = () => {
+const GameForm = () => {
     const router = useRouter();
     const [game, setGame] = useState({
         date: "",
@@ -114,4 +114,4 @@ const NewGame = () => {
     )
 }
 
-export default NewGame;
+export default GameForm;

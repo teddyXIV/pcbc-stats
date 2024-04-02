@@ -1,4 +1,5 @@
 import type { OneGame } from "@/types/game";
+import Link from "next/link";
 
 const OneGameTable = ({ game }: { game: OneGame }) => {
 
@@ -16,6 +17,7 @@ const OneGameTable = ({ game }: { game: OneGame }) => {
             <td className="px-4 py-2 whitespace-nowrap">{game.strikeouts}</td>
             <td className="px-4 py-2 whitespace-nowrap">{game.hbp}</td>
             <td className="px-4 py-2 whitespace-nowrap">{game.sacrifice}</td>
+            <td className="px-4 py-2 whitespace-nowrap"><Link href={`/edit-game/${game._id}`}>Edit</Link></td>
         </tr>
 
     );

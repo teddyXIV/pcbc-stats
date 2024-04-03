@@ -10,35 +10,18 @@ import OneGameTable from "@/components/one-game-table";
 import Modal from "@/components/modal";
 import Link from "next/link";
 
-type YourStatsProps = {
-    searchParams: Record<string, string> | null | undefined
-    // stats: Game[]
-};
-
-// const getServerSideProps = async () => {
-//     try {
-//         const res = await axios.get('/api/users/your-stats');
-//         const stats = res.data.data;
-//         return {
-//             props: {
-//                 stats
-//             }
-//         };
-//     } catch (error) {
-//         console.error("Error fetching user stats:", error);
-//         return {
-//             props: {
-//                 stats: []
-//             }
-//         };
-//     }
+// type YourStatsProps = {
+//     searchParams: Record<string, string> | null | undefined
+//     stats: Game[]
 // };
 
-const YourStats = ({ searchParams }: YourStatsProps) => {
+
+
+const YourStats = () => {
     const [loading, setLoading] = useState(true)
     const [stats, setStats] = useState<Game[]>([]);
-    const show = searchParams?.show
-    const cancelGame = searchParams?.game
+    // const show = searchParams?.show
+    // const cancelGame = searchParams?.game
 
     useEffect(() => {
         const getUserDetails = async () => {
@@ -146,7 +129,7 @@ const YourStats = ({ searchParams }: YourStatsProps) => {
                             </table>
                         </div>
                     </div>
-                    {show && <Modal cancelGame={cancelGame} />}
+                    {/* {show && <Modal cancelGame={cancelGame} />} */}
                 </>
                 : <h2>No stats available</h2>}
 

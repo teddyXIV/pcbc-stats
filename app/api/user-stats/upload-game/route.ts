@@ -12,6 +12,10 @@ export const POST = async (request: NextRequest) => {
         const userId = await getDataFromToken(request)
         console.log(userId)
 
+        const totalPlateAppearances = singles + doubles + triples + homeruns + walks + strikeouts + hbp + sacrifice;
+        if (plate_appearances < totalPlateAppearances) {
+            return NextResponse.json({ error: "Plate appearances must be greater than or equal to the sum of other stats" }, { status: 400 });
+        }
 
         const newGame = new Game({
             user: userId,

@@ -18,6 +18,7 @@ const YourStats = ({ searchParams }: ParamProps) => {
     const [loading, setLoading] = useState(true)
     const [stats, setStats] = useState<Game[]>([]);
     const show = searchParams?.show
+    const cancelGame = searchParams?.game
 
     useEffect(() => {
         const getUserDetails = async () => {
@@ -125,7 +126,7 @@ const YourStats = ({ searchParams }: ParamProps) => {
                             </table>
                         </div>
                     </div>
-                    {show && <Modal />}
+                    {show && <Modal cancelGame={cancelGame} />}
                 </>
                 : <h2>No stats available</h2>}
 

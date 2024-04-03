@@ -13,6 +13,7 @@ interface EditGameProps {
 
 const EditGame = ({ params }: EditGameProps) => {
     const router = useRouter();
+    const [errorMessage, setErrorMessage] = useState("")
     const [game, setGame] = useState<Game>({
         _id: "",
         date: "",
@@ -40,8 +41,13 @@ const EditGame = ({ params }: EditGameProps) => {
                 setGame(res.data.data);
                 setLoading(false)
 
-            } catch (error) {
-                console.error("Error fetching user stats:", error);
+            } catch (error: any) {
+                console.error("Game submission failed", error.message);
+                if (error.response && error.response.data && error.response.data.error) {
+                    setErrorMessage(error.response.data.error);
+                } else {
+                    setErrorMessage("Game submission failed. Please try again later.");
+                }
             }
         };
 
@@ -53,7 +59,12 @@ const EditGame = ({ params }: EditGameProps) => {
             const reponse = await axios.put("/api/user-stats/edit-game", game);
             router.push('/your-stats');
         } catch (error: any) {
-            console.log("Game update failed", error.message);
+            console.error("Game submission failed", error.message);
+            if (error.response && error.response.data && error.response.data.error) {
+                setErrorMessage(error.response.data.error);
+            } else {
+                setErrorMessage("Game submission failed. Please try again later.");
+            }
         }
     }
 
@@ -62,6 +73,7 @@ const EditGame = ({ params }: EditGameProps) => {
             {loading ? <h1>Loading...</h1> :
 
                 <div className="flex flex-col w-32 m-auto">
+                    {errorMessage && <div className="text-red-500">{errorMessage}</div>}
                     <h1>{game._id}</h1>
                     <label htmlFor="date">Date</label>
                     <input

@@ -10,11 +10,31 @@ import OneGameTable from "@/components/one-game-table";
 import Modal from "@/components/modal";
 import Link from "next/link";
 
-type ParamProps = {
+type YourStatsProps = {
     searchParams: Record<string, string> | null | undefined
+    // stats: Game[]
 };
 
-const YourStats = ({ searchParams }: ParamProps) => {
+// const getServerSideProps = async () => {
+//     try {
+//         const res = await axios.get('/api/users/your-stats');
+//         const stats = res.data.data;
+//         return {
+//             props: {
+//                 stats
+//             }
+//         };
+//     } catch (error) {
+//         console.error("Error fetching user stats:", error);
+//         return {
+//             props: {
+//                 stats: []
+//             }
+//         };
+//     }
+// };
+
+const YourStats = ({ searchParams }: YourStatsProps) => {
     const [loading, setLoading] = useState(true)
     const [stats, setStats] = useState<Game[]>([]);
     const show = searchParams?.show

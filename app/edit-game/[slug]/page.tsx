@@ -11,7 +11,7 @@ interface EditGameProps {
     }
 }
 
-const EditGame: React.FC<EditGameProps> = ({ params }) => {
+const EditGame = ({ params }: EditGameProps) => {
     const router = useRouter();
     const [game, setGame] = useState<Game>({
         _id: "",

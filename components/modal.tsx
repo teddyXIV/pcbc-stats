@@ -19,11 +19,7 @@ const Modal = ({ cancelGame }: CancelGameProp) => {
                 }
             });
 
-            router.push(res.data.redirectUrl)
-
-            // if (res.data.success && res.data.redirectUrl) {
-            //     router.push(res.data.redirectUrl)
-            // }
+            router.push('/your-stats');
 
         } catch (error) {
             console.error("Error fetching user stats:", error);

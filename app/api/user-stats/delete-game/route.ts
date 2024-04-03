@@ -2,10 +2,16 @@ import { connect } from "@/dbConfig/dbConfig";
 import { getDataFromToken } from "@/helpers/getDataFromToken";
 import Game from "@/models/gameModel";
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
+
+export const revalidate = true
 
 connect()
 
+
+
 export const DELETE = async (request: NextRequest) => {
+
     try {
 
         const url = new URL(request.url)
@@ -26,10 +32,12 @@ export const DELETE = async (request: NextRequest) => {
             return NextResponse.json({ error: "Game not found" }, { status: 404 });
         }
 
+
+        revalidatePath('your-stats')
         return NextResponse.json({
             success: true,
-            redirectUrl: "/your-stats"
         });
+
     } catch (error: any) {
         return NextResponse.json({ error: error.message }, { status: 500 });
     }

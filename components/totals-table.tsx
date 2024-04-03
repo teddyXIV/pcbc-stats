@@ -5,7 +5,7 @@ const TotalsTable = ({ game }: { game: Totals }) => {
 
     return (
 
-        <tr>
+        <tr key="total_table">
             <td className="px-4 py-2 whitespace-nowrap">{game.plate_appearances}</td>
             <td className="px-4 py-2 whitespace-nowrap">{game.at_bats}</td>
             <td className="px-4 py-2 whitespace-nowrap">{game.hits}</td>

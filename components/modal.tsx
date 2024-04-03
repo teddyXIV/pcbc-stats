@@ -1,11 +1,35 @@
+import axios from "axios";
 import Link from "next/link"
+import { useRouter } from "next/navigation";
 
 type CancelGameProp = {
     cancelGame: string | null | undefined
 };
 
 const Modal = ({ cancelGame }: CancelGameProp) => {
+    const router = useRouter();
     const game = cancelGame
+
+    const handleClick = async () => {
+
+        try {
+            const res = await axios.delete('/api/user-stats/delete-game', {
+                params: {
+                    gameId: game
+                }
+            });
+
+            router.push(res.data.redirectUrl)
+
+            // if (res.data.success && res.data.redirectUrl) {
+            //     router.push(res.data.redirectUrl)
+            // }
+
+        } catch (error) {
+            console.error("Error fetching user stats:", error);
+        }
+
+    }
 
     return (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
@@ -14,7 +38,7 @@ const Modal = ({ cancelGame }: CancelGameProp) => {
                     <h3 className="text-2xl font-bold text-gray-900">Are you sure you want to delete this game?</h3>
                     <div>
                         <Link href="/your-stats">No</Link>
-                        <Link href={`/delete-game/${game}`}>Yes, delete</Link>
+                        <button onClick={handleClick}>Yes, delete</button>
                     </div>
                 </div>
             </div>

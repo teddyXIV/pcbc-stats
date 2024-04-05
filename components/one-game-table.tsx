@@ -6,7 +6,7 @@ const OneGameTable = ({ game }: { game: OneGame }) => {
 
     return (
 
-        <tr key={game._id}>
+        <tr key={game._id} className="odd:bg-white even:bg-slate-50">
             <td className="px-4 py-2 whitespace-nowrap">{game.date}</td>
             <td className="px-4 py-2 whitespace-nowrap">{game.plate_appearances}</td>
             <td className="px-4 py-2 whitespace-nowrap">{game.singles}</td>

@@ -7,21 +7,11 @@ import type { Game, Totals } from "@/types/game";
 
 import TotalsTable from "@/components/totals-table";
 import OneGameTable from "@/components/one-game-table";
-import Modal from "@/components/modal";
 import Link from "next/link";
-
-// type YourStatsProps = {
-//     searchParams: Record<string, string> | null | undefined
-//     stats: Game[]
-// };
-
-
 
 const YourStats = () => {
     const [loading, setLoading] = useState(true)
     const [stats, setStats] = useState<Game[]>([]);
-    // const show = searchParams?.show
-    // const cancelGame = searchParams?.game
 
     useEffect(() => {
         const getUserDetails = async () => {
@@ -74,65 +64,54 @@ const YourStats = () => {
         )
     })
 
+    let view;
+
+    if (stats.length === 0 && !loading) {
+        view = <h2>No games have been submitted. Submit a game to view your stats! </h2>
+    } else if (stats.length > 0 && !loading) {
+        view =
+            <>
+                <div>
+                    <TripleSlash
+                        average={average.toFixed(3)}
+                        onBase={onBase.toFixed(3)}
+                        slugging={slugging.toFixed(3)}
+                    />
+                    <div>
+                        <h2 className="text-center text-white">Totals</h2>
+                        <TotalsTable game={Totals} />
+                    </div>
+                    <div>
+                        <h2 className="text-center text-white">Games</h2>
+                        <table className="w-fit mx-auto bg-white border border-gray-200 divide-y divide-gray-200">
+                            <tbody className="divide-y divide-gray-200">
+                                <tr>
+                                    <td className="px-4 py-2 whitespace-nowrap">Date</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">PA</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">1B</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">2B</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">3B</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">HR</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">BB</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">SO</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">HBP</td>
+                                    <td className="px-4 py-2 whitespace-nowrap">Sac</td>
+                                </tr>
+                                {individualGames}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </>
+    }
+
     return (
         <main>
-            <Link href="/new-game">Submit a new game</Link>
-            <Link href="/your-stats">Your stats</Link>
-            <h1>Your Stats</h1>
-            {loading ? <h2>Loading stats...</h2> : null}
-            {stats.length > 0 ?
-                <>
-                    <div>
-                        <TripleSlash
-                            average={parseFloat(average.toFixed(3))}
-                            onBase={parseFloat(onBase.toFixed(3))}
-                            slugging={parseFloat(slugging.toFixed(3))} />
-                        <div>
-                            <h2>Totals</h2>
-                            <table className="w-fit mx-auto bg-white border border-gray-200 divide-y divide-gray-200">
-                                <tbody className="divide-y divide-gray-200">
-                                    <tr>
-                                        <td className="px-4 py-2 whitespace-nowrap">PA</td>
-                                        <td className="px-4 py-2 whitespace-nowrap">AB</td>
-                                        <td className="px-4 py-2 whitespace-nowrap">H</td>
-                                        <td className="px-4 py-2 whitespace-nowrap">1B</td>
-                                        <td className="px-4 py-2 whitespace-nowrap">2B</td>
-                                        <td className="px-4 py-2 whitespace-nowrap">3B</td>
-                                        <td className="px-4 py-2 whitespace-nowrap">HR</td>
-                                        <td className="px-4 py-2 whitespace-nowrap">BB</td>
-                                        <td className="px-4 py-2 whitespace-nowrap">SO</td>
-                                        <td className="px-4 py-2 whitespace-nowrap">HBP</td>
-                                        <td className="px-4 py-2 whitespace-nowrap">Sac</td>
-                                    </tr>
-                                    <TotalsTable game={Totals} />
-                                </tbody>
-                            </table>
-                        </div>
-                        <div>
-                            <h2>Games</h2>
-                            <table className="w-fit mx-auto bg-white border border-gray-200 divide-y divide-gray-200">
-                                <tbody className="divide-y divide-gray-200">
-                                    <tr>
-                                        <td className="px-4 py-2 whitespace-nowrap">Date</td>
-                                        <td className="px-4 py-2 whitespace-nowrap">PA</td>
-                                        <td className="px-4 py-2 whitespace-nowrap">1B</td>
-                                        <td className="px-4 py-2 whitespace-nowrap">2B</td>
-                                        <td className="px-4 py-2 whitespace-nowrap">3B</td>
-                                        <td className="px-4 py-2 whitespace-nowrap">HR</td>
-                                        <td className="px-4 py-2 whitespace-nowrap">BB</td>
-                                        <td className="px-4 py-2 whitespace-nowrap">SO</td>
-                                        <td className="px-4 py-2 whitespace-nowrap">HBP</td>
-                                        <td className="px-4 py-2 whitespace-nowrap">Sac</td>
-                                    </tr>
-                                    {individualGames}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    {/* {show && <Modal cancelGame={cancelGame} />} */}
-                </>
-                : <h2>No stats available</h2>}
-
+            <div className="flex justify-center">
+                <Link href="/new-game" className="border-2 border-white text-white rounded-lg py-1 px-2">Submit a new game</Link>
+            </div>
+            {loading ? <h2 className="text-center text-3xl text-white my-10">Loading stats...</h2> : null}
+            {view}
         </main>
     );
 }

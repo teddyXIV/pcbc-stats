@@ -72,9 +72,8 @@ const EditGame = ({ params }: EditGameProps) => {
         <div>
             {loading ? <h1>Loading...</h1> :
 
-                <div className="flex flex-col w-32 m-auto">
+                <div className="flex flex-col w-32 m-auto text-white">
                     {errorMessage && <div className="text-red-500">{errorMessage}</div>}
-                    <h1>{game._id}</h1>
                     <label htmlFor="date">Date</label>
                     <input
                         id="date"

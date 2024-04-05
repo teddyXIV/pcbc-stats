@@ -22,7 +22,7 @@ const DeletePage = ({ params }: DeleteGameProps) => {
                 }
             });
 
-            router.push('/your-stats');
+            router.push('/');
 
         } catch (error) {
             console.error("Error fetching user stats:", error);
@@ -33,8 +33,8 @@ const DeletePage = ({ params }: DeleteGameProps) => {
     return (
         <div className="text-white">
             <h2>Are you sure you want to delete this game?</h2>
-            <Link href="/your-stats">No</Link>
-            <button onClick={handleClick}>Yes, delete this game</button>
+            <Link href="/" className="border-2 border-white rounded-lg py-1 px-2">No</Link>
+            <button onClick={handleClick} className="border-2 border-white rounded-lg py-1 px-2">Yes, delete this game</button>
         </div>
     )
 }

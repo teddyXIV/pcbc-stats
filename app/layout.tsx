@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-import Header from '@/components/header'
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -20,7 +18,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} bg-[url('../assets/baseball-field.jpg')] bg-top bg-no-repeat bg-cover`}>
         <div className="absolute inset-0 bg-black bg-opacity-75">
-          <Header />
           {children}
         </div>
       </body>

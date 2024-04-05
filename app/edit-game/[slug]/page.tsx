@@ -1,5 +1,6 @@
 "use client"
 
+import BackButton from "@/components/back-button";
 import { Game } from "@/types/game";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -57,7 +58,7 @@ const EditGame = ({ params }: EditGameProps) => {
     const onSubmit = async () => {
         try {
             const reponse = await axios.put("/api/user-stats/edit-game", game);
-            router.push('/your-stats');
+            router.push('/');
         } catch (error: any) {
             console.error("Game submission failed", error.message);
             if (error.response && error.response.data && error.response.data.error) {
@@ -153,7 +154,8 @@ const EditGame = ({ params }: EditGameProps) => {
                         value={game.sacrifice}
                         onChange={(e) => setGame({ ...game, sacrifice: parseInt(e.target.value, 10) })}
                     />
-                    <button onClick={onSubmit}>Submit</button>
+                    <button onClick={onSubmit} className="border-2 border-white text-white rounded-lg py-1 px-2">Submit</button>
+                    <BackButton text="Nevermind" />
                 </div>}
         </div>
 

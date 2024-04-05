@@ -4,6 +4,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation"
 import { useState } from "react";
 import type { GameForm } from "@/types/game";
+import BackButton from "@/components/back-button";
 
 const GameForm = () => {
     const router = useRouter();
@@ -24,7 +25,7 @@ const GameForm = () => {
     const onSubmit = async () => {
         try {
             const reponse = await axios.post("api/user-stats/upload-game", game);
-            router.push('/your-stats');
+            router.push('/');
         } catch (error: any) {
             console.error("Game submission failed", error.message);
             if (error.response && error.response.data && error.response.data.error) {
@@ -36,7 +37,7 @@ const GameForm = () => {
     }
 
     return (
-        <div className="flex flex-col w-32 m-auto">
+        <div className="flex flex-col w-32 m-auto text-white">
             {errorMessage && <div className="text-red-500">{errorMessage}</div>}
             <label htmlFor="date">Date</label>
             <input
@@ -44,6 +45,7 @@ const GameForm = () => {
                 type="date"
                 value={game.date}
                 onChange={(e) => setGame({ ...game, date: e.target.value })}
+                className="text-black"
             />
             <label htmlFor="plate_appearances">Plate Appearances</label>
             <input
@@ -52,6 +54,7 @@ const GameForm = () => {
                 step="1"
                 value={game.plate_appearances}
                 onChange={(e) => setGame({ ...game, plate_appearances: parseInt(e.target.value, 10) })}
+                className="text-black"
             />
             <label htmlFor="singles">Singles</label>
             <input
@@ -60,6 +63,7 @@ const GameForm = () => {
                 step="1"
                 value={game.singles}
                 onChange={(e) => setGame({ ...game, singles: parseInt(e.target.value, 10) })}
+                className="text-black"
             />
             <label htmlFor="doubles">Doubles</label>
             <input
@@ -68,6 +72,7 @@ const GameForm = () => {
                 step="1"
                 value={game.doubles}
                 onChange={(e) => setGame({ ...game, doubles: parseInt(e.target.value, 10) })}
+                className="text-black"
             />
             <label htmlFor="triples">Triples</label>
             <input
@@ -76,6 +81,7 @@ const GameForm = () => {
                 step="1"
                 value={game.triples}
                 onChange={(e) => setGame({ ...game, triples: parseInt(e.target.value, 10) })}
+                className="text-black"
             />
             <label htmlFor="homeruns">Homeruns</label>
             <input
@@ -84,6 +90,7 @@ const GameForm = () => {
                 step="1"
                 value={game.homeruns}
                 onChange={(e) => setGame({ ...game, homeruns: parseInt(e.target.value, 10) })}
+                className="text-black"
             />
             <label htmlFor="walks">Walks</label>
             <input
@@ -92,6 +99,7 @@ const GameForm = () => {
                 step="1"
                 value={game.walks}
                 onChange={(e) => setGame({ ...game, walks: parseInt(e.target.value, 10) })}
+                className="text-black"
             />
             <label htmlFor="strikeouts">Strikeouts</label>
             <input
@@ -100,6 +108,7 @@ const GameForm = () => {
                 step="1"
                 value={game.strikeouts}
                 onChange={(e) => setGame({ ...game, strikeouts: parseInt(e.target.value, 10) })}
+                className="text-black"
             />
             <label htmlFor="hbp">Hit By Pitch</label>
             <input
@@ -108,6 +117,7 @@ const GameForm = () => {
                 step="1"
                 value={game.hbp}
                 onChange={(e) => setGame({ ...game, hbp: parseInt(e.target.value, 10) })}
+                className="text-black"
             />
             <label htmlFor="sacrifice">Sacrifice</label>
             <input
@@ -116,8 +126,10 @@ const GameForm = () => {
                 step="1"
                 value={game.sacrifice}
                 onChange={(e) => setGame({ ...game, sacrifice: parseInt(e.target.value, 10) })}
+                className="text-black"
             />
-            <button onClick={onSubmit}>Submit</button>
+            <button onClick={onSubmit} className="border-2 border-white text-white rounded-lg py-1 px-2">Submit</button>
+            <BackButton text="Nevermind" />
         </div>
     )
 }

@@ -31,10 +31,10 @@ const DeletePage = ({ params }: DeleteGameProps) => {
     }
 
     return (
-        <div className="text-white">
+        <div className="flex flex-col w-64 mx-auto justify-center h-screen text-white">
             <h2>Are you sure you want to delete this game?</h2>
-            <Link href="/" className="border-2 border-white rounded-lg py-1 px-2">No</Link>
-            <button onClick={handleClick} className="border-2 border-white rounded-lg py-1 px-2">Yes, delete this game</button>
+            <Link href="/" className="border-2 border-white text-white hover:border-black hover:text-black hover:bg-white rounded-lg py-1 px-2 mb-2 text-center">No</Link>
+            <button onClick={handleClick} className="border-2 border-white text-white hover:border-black hover:text-black hover:bg-white rounded-lg py-1 px-2">Yes, delete this game</button>
         </div>
     )
 }

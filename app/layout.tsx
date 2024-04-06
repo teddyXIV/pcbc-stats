@@ -16,8 +16,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-[url('../assets/baseball-field.jpg')] bg-top bg-no-repeat bg-cover`}>
-        <div className="absolute inset-0 bg-black bg-opacity-75">
+      <body className={`${inter.className} bg-[url('../assets/baseball-field.jpg')] bg-no-repeat bg-cover h-screen`}>
+        <div className="absolute inset-0 bg-black bg-cover bg-opacity-75">
           {children}
         </div>
       </body>

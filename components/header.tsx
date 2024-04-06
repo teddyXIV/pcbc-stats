@@ -17,8 +17,8 @@ const Header = () => {
 
 
     return (
-        <div className="flex flex-row">
-            {checkAuth() ? <Logout /> : <Link href="/login" className="border-white border-2 rounded text-white py-1 px-2">Login</Link>}
+        <div className="flex flex-row justify-end">
+            {checkAuth() ? <Logout /> : <Link href="/login" className="border-white border-2 rounded-lg text-white hover:border-black hover:text-black hover:bg-white py-1 px-2 m-2">Login</Link>}
         </div>
     )
 }

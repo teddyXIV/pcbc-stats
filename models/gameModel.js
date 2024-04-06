@@ -15,7 +15,7 @@ const gameSchema = new mongoose.Schema({
         default: 0,
         validate: {
             validator: function (value) {
-                return Number.isInteger(value);
+                return Number.isInteger(value) && value >= 0;
             },
             message: "Plate appearances must be an integer"
         }
@@ -25,7 +25,7 @@ const gameSchema = new mongoose.Schema({
         default: 0,
         validate: {
             validator: function (value) {
-                return Number.isInteger(value);
+                return Number.isInteger(value) && value >= 0;
             },
             message: "Singles must be an integer"
         }
@@ -35,7 +35,7 @@ const gameSchema = new mongoose.Schema({
         default: 0,
         validate: {
             validator: function (value) {
-                return Number.isInteger(value);
+                return Number.isInteger(value) && value >= 0;
             },
             message: "Doubles must be an integer"
         }
@@ -45,7 +45,7 @@ const gameSchema = new mongoose.Schema({
         default: 0,
         validate: {
             validator: function (value) {
-                return Number.isInteger(value);
+                return Number.isInteger(value) && value >= 0;
             },
             message: "Triples must be an integer"
         }
@@ -55,7 +55,7 @@ const gameSchema = new mongoose.Schema({
         default: 0,
         validate: {
             validator: function (value) {
-                return Number.isInteger(value);
+                return Number.isInteger(value) && value >= 0;
             },
             message: "Homeruns must be an integer"
         }
@@ -65,7 +65,7 @@ const gameSchema = new mongoose.Schema({
         default: 0,
         validate: {
             validator: function (value) {
-                return Number.isInteger(value);
+                return Number.isInteger(value) && value >= 0;
             },
             message: "Walks must be an integer"
         }
@@ -75,7 +75,7 @@ const gameSchema = new mongoose.Schema({
         default: 0,
         validate: {
             validator: function (value) {
-                return Number.isInteger(value);
+                return Number.isInteger(value) && value >= 0;
             },
             message: "Strikeouts must be an integer"
         }
@@ -85,7 +85,7 @@ const gameSchema = new mongoose.Schema({
         default: 0,
         validate: {
             validator: function (value) {
-                return Number.isInteger(value);
+                return Number.isInteger(value) && value >= 0;
             },
             message: "Hit by pitch must be an integer"
         }
@@ -95,7 +95,7 @@ const gameSchema = new mongoose.Schema({
         default: 0,
         validate: {
             validator: function (value) {
-                return Number.isInteger(value);
+                return Number.isInteger(value) && value >= 0;
             },
             message: "Sacrifice outs must be an integer"
         }

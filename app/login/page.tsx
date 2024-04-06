@@ -27,7 +27,7 @@ const LoginPage = () => {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen py-2 text-white">
-            <h1>{loading ? "Processing" : "Login"}</h1>
+            <h1 className="text-3xl">{loading ? "Processing" : "Login"}</h1>
             <hr />
 
             <label htmlFor="email">email</label>
@@ -47,8 +47,8 @@ const LoginPage = () => {
                 onChange={(e) => setUser({ ...user, password: e.target.value })}
                 className="text-black"
             />
-            <button onClick={onLogin}>Login</button>
-            <Link href="/signup">No account? Sign up here!</Link>
+            <button onClick={onLogin} className="border-2 border-white text-white hover:border-black hover:text-black hover:bg-white rounded-lg py-1 px-2 my-2">Login</button>
+            <Link href="/signup" className="border-2 border-white text-white hover:border-black hover:text-black hover:bg-white rounded-lg py-1 px-2 mb-2">No account? Sign up here!</Link>
         </div>
     )
 }

@@ -17,8 +17,8 @@ const OneGameTable = ({ game }: { game: OneGame }) => {
             <td className="px-4 py-2 whitespace-nowrap">{game.strikeouts}</td>
             <td className="px-4 py-2 whitespace-nowrap">{game.hbp}</td>
             <td className="px-4 py-2 whitespace-nowrap">{game.sacrifice}</td>
-            <td className="px-4 py-2 whitespace-nowrap"><Link href={`/edit-game/${game._id}`}>Edit</Link></td>
-            <td className="px-4 py-2 whitespace-nowrap"><Link href={`/delete-game/${game._id}`}>Delete</Link></td>
+            <td className="px-4 py-2 whitespace-nowrap"><Link href={`/edit-game/${game._id}`} className="underline">Edit</Link></td>
+            <td className="px-4 py-2 whitespace-nowrap"><Link href={`/delete-game/${game._id}`} className="underline">Delete</Link></td>
         </tr>
 
     );

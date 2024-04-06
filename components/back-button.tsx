@@ -14,7 +14,7 @@ const BackButton = (props: BackButtonProps) => {
     }
 
     return (
-        <button onClick={handleClick} className="border-2 border-white text-white rounded-lg py-1 px-2">{props.text}</button>
+        <button onClick={handleClick} className="border-2 border-white text-white hover:border-black hover:text-black hover:bg-white rounded-lg py-1 px-2">{props.text}</button>
     )
 }
 

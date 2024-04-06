@@ -48,8 +48,8 @@ const SignUpPage = () => {
                 onChange={(e) => setUser({ ...user, password: e.target.value })}
                 placeholder="password"
             />
-            <button onClick={onSignUp}>Sign up</button>
-            <Link href="/login">Already have an account? Log in!</Link>
+            <button onClick={onSignUp} className="border-2 border-white text-white hover:border-black hover:text-black hover:bg-white rounded-lg py-1 px-2 my-2">Sign up</button>
+            <Link href="/login" className="border-2 border-white text-white hover:border-black hover:text-black hover:bg-white rounded-lg py-1 px-2 my-2">Already have an account? Log in!</Link>
         </div>
     )
 }

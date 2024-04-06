@@ -49,6 +49,7 @@ const LoginPage = () => {
             />
             <button onClick={onLogin} className="border-2 border-white text-white hover:border-black hover:text-black hover:bg-white rounded-lg py-1 px-2 my-2">Login</button>
             <Link href="/signup" className="border-2 border-white text-white hover:border-black hover:text-black hover:bg-white rounded-lg py-1 px-2 mb-2">No account? Sign up here!</Link>
+            <Link href="/forgot-password" className="underline">Forgot your password? Click here to reset!</Link>
         </div>
     )
 }
